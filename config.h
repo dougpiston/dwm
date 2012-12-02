@@ -7,7 +7,7 @@ static const char colors[NUMCOLORS][ColLast][9] = {
   // border foreground background
   { "#5f636d", "#5f636d", "#1d1f21" }, // 1 = normal (grey on black)
   { "#f0c674", "#c5c8c6", "#1d1f21" }, // 2 = selected (white on black)
-  { "#dc322f", "#1d1f21", "#f0c674" }, // 3 = urgent (black on yellow)
+  { "#dc322f", "#1d1f21", "#7f7f7f" }, // 3 = urgent (black on gray)
   { "#717782", "#717782", "#1d1f21" }, // 4 = darkgrey on black (triangle)
   { "#282a2e", "#1d1f21", "#282a2e" }, // 5 = black on darkgrey (triangle)
   { "#282a2e", "#b294bb", "#282a2e" }, // 6 = magenta on darkgrey
@@ -31,10 +31,12 @@ static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            True,        -1 },
 	{ "Firefox",  NULL,       NULL,       1 << 1,       False,       -1 },
+  { "rTorrent", NULL,       NULL,       1 << 3,       False,       -1 },
+  { "Pcmanfm",  NULL,       NULL,       1 << 2,       False,       -1 },
 };
 
 /* layout(s) */
-static const float mfact      = 0.55; /* factor of master area size [0.05..0.95] */
+static const float mfact      = 0.50; /* factor of master area size [0.05..0.95] */
 static const int nmaster      = 1;    /* number of clients in master area */
 static const Bool resizehints = False; /* True means respect size hints in tiled resizals */
 
@@ -42,11 +44,11 @@ static const Bool resizehints = False; /* True means respect size hints in tiled
 #include "bstackhoriz.c"
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-  { "[ü]",      bstack }, /* first entry is default */
+  { "[õ]",      bstack }, /* first entry is default */
 	{ "[þ]",      tile },
 	{ "[ý]",      NULL },    /* no layout function means floating behavior */
 	{ "M",      monocle },
-	{ "===",      bstackhoriz },
+	{ "[û]",      bstackhoriz },
 };
 
 /* key definitions */
@@ -66,6 +68,7 @@ static const char *termcmd[]  = { "urxvt", NULL };
 static const char *pcmancmd[] = { "pcmanfm", NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "urxvt", "-name", scratchpadname, "-geometry", "100x25", NULL };
+static const char *rtorrentcmd[] = { "urxvt", "-e", "rtorrent", NULL };
 static const char *volupcmd[] = { "amixer", "-q", "set", "Master", "5%+", NULL };
 static const char *voldncmd[] = { "amixer", "-q", "set", "Master", "5%-", NULL };
 static const char *mpdstop[]  = { "ncmpcpp", "stop", NULL };
@@ -86,6 +89,7 @@ static Key keys[] = {
   { MODKEY,                       XK_x,      spawn,          {.v = firefox } },
   { MODKEY,                       XK_z,      togglescratch,  {.v = scratchpadcmd} },
   { MODKEY,                       XK_a,      spawn,          {.v = pcmancmd} },
+  { MODKEY,                       XK_r,      spawn,          {.v = rtorrentcmd} },
 	{ MODKEY|ShiftMask,             XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
