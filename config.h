@@ -7,7 +7,7 @@ static const char colors[NUMCOLORS][ColLast][9] = {
   // border foreground background
   { "#5f636d", "#5f636d", "#1d1f21" }, // 1 = normal (grey on black)
   { "#f0c674", "#c5c8c6", "#1d1f21" }, // 2 = selected (white on black)
-  { "#dc322f", "#1d1f21", "#7f7f7f" }, // 3 = urgent (black on gray)
+  { "#dc322f", "#cc6666", "#1d1f21" }, // 3 = urgent (black on gray)
   { "#717782", "#717782", "#1d1f21" }, // 4 = darkgrey on black (triangle)
   { "#282a2e", "#1d1f21", "#282a2e" }, // 5 = black on darkgrey (triangle)
   { "#282a2e", "#b294bb", "#282a2e" }, // 6 = magenta on darkgrey
