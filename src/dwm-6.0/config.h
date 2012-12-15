@@ -31,8 +31,9 @@ static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            True,        -1 },
 	{ "Firefox",  NULL,       NULL,       1 << 1,       False,       -1 },
-  { "rTorrent", NULL,       NULL,       1 << 3,       False,       -1 },
+  { NULL,       NULL,       "rtorrent", 1 << 4,       False,       -1 },
   { "Pcmanfm",  NULL,       NULL,       1 << 2,       False,       -1 },
+  { NULL,       NULL,       "mutt",     1 << 3,       False,       -1 },
 };
 
 /* layout(s) */
@@ -63,18 +64,20 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *dmenucmd[] = { "dmenu_run", "-fn", font, "-nb", colors[0][ColBG], "-nf", colors[0][ColFG], "-sb", colors[1][ColBG], "-sf", colors[1][ColFG], NULL };
-static const char *termcmd[]  = { "urxvt", NULL };
-static const char *pcmancmd[] = { "pcmanfm", NULL };
+static const char *dmenucmd[]      = { "dmenu_run", "-fn", font, "-nb", colors[0][ColBG], "-nf", colors[0][ColFG], "-sb", colors[1][ColBG], "-sf", colors[1][ColFG], NULL };
+static const char *termcmd[]       = { "urxvt", NULL };
+static const char *pcmancmd[]      = { "pcmanfm", NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "urxvt", "-name", scratchpadname, "-geometry", "100x25", NULL };
-static const char *rtorrentcmd[] = { "urxvt", "-e", "rtorrent", NULL };
-static const char *volupcmd[] = { "amixer", "-q", "set", "Master", "5%+", NULL };
-static const char *voldncmd[] = { "amixer", "-q", "set", "Master", "5%-", NULL };
-static const char *mpdstop[]  = { "ncmpcpp", "stop", NULL };
-static const char *mpdprev[]  = { "ncmpcpp", "prev", NULL };
-static const char *mpdnext[]  = { "ncmpcpp", "next", NULL };
-static const char *firefox[]  = { "firefox", NULL };
+static const char *rtorrentcmd[]   = { "urxvt", "-title", "rtorrent", "-e", "rtorrent", NULL };
+static const char *muttcmd[]       = { "urxvt", "-title", "mutt", "-e", "mutt", NULL };
+static const char *irssicmd[]      = { "urxvt", "-e", "irssi", NULL };
+static const char *volupcmd[]      = { "amixer", "-q", "set", "Master", "5%+", NULL };
+static const char *voldncmd[]      = { "amixer", "-q", "set", "Master", "5%-", NULL };
+static const char *mpdstop[]       = { "ncmpcpp", "stop", NULL };
+static const char *mpdprev[]       = { "ncmpcpp", "prev", NULL };
+static const char *mpdnext[]       = { "ncmpcpp", "next", NULL };
+static const char *firefox[]       = { "firefox", NULL };
 
 
 static Key keys[] = {
@@ -90,10 +93,12 @@ static Key keys[] = {
   { MODKEY,                       XK_z,      togglescratch,  {.v = scratchpadcmd} },
   { MODKEY,                       XK_a,      spawn,          {.v = pcmancmd} },
   { MODKEY,                       XK_r,      spawn,          {.v = rtorrentcmd} },
+  { MODKEY,                       XK_i,      spawn,          {.v = irssicmd} },
+  { MODKEY,                       XK_m,      spawn,          {.v = muttcmd} },
   { MODKEY|ShiftMask,             XK_b,      togglebar,      {0} },
   { MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
   { MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-  { MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
+  { MODKEY,                       XK_w,      incnmaster,     {.i = +1 } },
   { MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
   { MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
   { MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
@@ -103,7 +108,7 @@ static Key keys[] = {
   { MODKEY,                       XK_b,      setlayout,      {.v = &layouts[0]} },
   { MODKEY,                       XK_t,      setlayout,      {.v = &layouts[1]} },
   { MODKEY,                       XK_f,      setlayout,      {.v = &layouts[2]} },
-  { MODKEY,                       XK_m,      setlayout,      {.v = &layouts[3]} },
+  { MODKEY,                       XK_o,      setlayout,      {.v = &layouts[3]} },
   { MODKEY,                       XK_space,  setlayout,      {0} },
   { MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
   { MODKEY,                       XK_0,      view,           {.ui = ~0 } },
