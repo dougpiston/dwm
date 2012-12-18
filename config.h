@@ -34,6 +34,7 @@ static const Rule rules[] = {
   { NULL,       NULL,       "rtorrent", 1 << 4,       False,       -1 },
   { "Pcmanfm",  NULL,       NULL,       1 << 2,       False,       -1 },
   { NULL,       NULL,       "mutt",     1 << 3,       False,       -1 },
+  { NULL,       NULL,       "irssi",    1 << 0,       False,       -1 },
 };
 
 /* layout(s) */
@@ -45,11 +46,11 @@ static const Bool resizehints = False; /* True means respect size hints in tiled
 #include "bstackhoriz.c"
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-  { "[õ]",      bstack }, /* first entry is default */
-	{ "[þ]",      tile },
-	{ "[ý]",      NULL },    /* no layout function means floating behavior */
+  { "õ",      bstack }, /* first entry is default */
+	{ "þ",      tile },
+	{ "ý",      NULL },    /* no layout function means floating behavior */
 	{ "M",      monocle },
-	{ "[û]",      bstackhoriz },
+	{ "û",      bstackhoriz },
 };
 
 /* key definitions */
@@ -71,7 +72,7 @@ static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "urxvt", "-name", scratchpadname, "-geometry", "100x25", NULL };
 static const char *rtorrentcmd[]   = { "urxvt", "-title", "rtorrent", "-e", "rtorrent", NULL };
 static const char *muttcmd[]       = { "urxvt", "-title", "mutt", "-e", "mutt", NULL };
-static const char *irssicmd[]      = { "urxvt", "-e", "irssi", NULL };
+static const char *irssicmd[]      = { "urxvt", "-title", "irssi", "-e", "irssi", NULL };
 static const char *volupcmd[]      = { "amixer", "-q", "set", "Master", "5%+", NULL };
 static const char *voldncmd[]      = { "amixer", "-q", "set", "Master", "5%-", NULL };
 static const char *mpdstop[]       = { "ncmpcpp", "stop", NULL };
