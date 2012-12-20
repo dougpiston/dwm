@@ -85,6 +85,8 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
   { 0,                          0x1008ff13,  spawn,          {.v = volupcmd } },
   { 0,                          0x1008ff11,  spawn,          {.v = voldncmd } },
+  { 0,                          0x1008ff02,  spawn,          SHCMD("xbacklight -inc 25") },
+  { 0,                          0x1008ff03,  spawn,          SHCMD("xbacklight -dec 15") },
   { MODKEY,                       XK_s,      spawn,          {.v = mpdstop } },
   { MODKEY,                       XK_p,      spawn,          {.v = mpdprev } },
   { MODKEY,                       XK_n,      spawn,          {.v = mpdnext } },
