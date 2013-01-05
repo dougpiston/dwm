@@ -1,5 +1,9 @@
 /* See LICENSE file for copyright and license details. */
 
+#include "runorraise.c"
+#include "bstackhoriz.c"
+#include "bstack.c"
+
 /* appearance */
 static const char font[] = "-*-ohsnap.icons-medium-*-normal--12-87-100-100-c-70-iso8859-1";
 #define NUMCOLORS 13
@@ -42,8 +46,6 @@ static const float mfact      = 0.50; /* factor of master area size [0.05..0.95]
 static const int nmaster      = 1;    /* number of clients in master area */
 static const Bool resizehints = False; /* True means respect size hints in tiled resizals */
 
-#include "bstack.c"
-#include "bstackhoriz.c"
 static const Layout layouts[] = {
 	/* symbol     arrange function */
   { "õ",      bstack }, /* first entry is default */
@@ -67,18 +69,18 @@ static const Layout layouts[] = {
 /* commands */
 static const char *dmenucmd[]      = { "dmenu_run", "-fn", font, "-nb", colors[0][ColBG], "-nf", colors[0][ColFG], "-sb", colors[1][ColBG], "-sf", colors[1][ColFG], NULL };
 static const char *termcmd[]       = { "urxvt", NULL };
-static const char *pcmancmd[]      = { "pcmanfm", NULL };
+static const char *pcmancmd[]      = { "pcmanfm", NULL, "Pcmanfm" };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "urxvt", "-name", scratchpadname, "-geometry", "100x25", NULL };
 static const char *rtorrentcmd[]   = { "urxvt", "-title", "rtorrent", "-e", "rtorrent", NULL };
-static const char *muttcmd[]       = { "urxvt", "-title", "mutt", "-e", "mutt", NULL };
+static const char *muttcmd[]       = { "urxvt", "-title", "mutt", "-e", "mutt", NULL, "Mutt" };
 static const char *irssicmd[]      = { "urxvt", "-title", "irssi", "-e", "irssi", NULL };
 static const char *volupcmd[]      = { "amixer", "-q", "set", "Master", "5%+", NULL };
 static const char *voldncmd[]      = { "amixer", "-q", "set", "Master", "5%-", NULL };
 static const char *mpdstop[]       = { "ncmpcpp", "stop", NULL };
 static const char *mpdprev[]       = { "ncmpcpp", "prev", NULL };
 static const char *mpdnext[]       = { "ncmpcpp", "next", NULL };
-static const char *firefox[]       = { "firefox", NULL };
+static const char *firefox[]       = { "firefox", NULL, "Firefox" };
 
 
 static Key keys[] = {
@@ -92,12 +94,12 @@ static Key keys[] = {
   { MODKEY,                       XK_n,      spawn,          {.v = mpdnext } },
   { MODKEY,                       XK_v,      spawn,          {.v = dmenucmd } },
   { MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-  { MODKEY,                       XK_x,      spawn,          {.v = firefox } },
+  { MODKEY,                       XK_x,      runorraise,     {.v = firefox } },
   { MODKEY,                       XK_z,      togglescratch,  {.v = scratchpadcmd} },
-  { MODKEY,                       XK_a,      spawn,          {.v = pcmancmd} },
-  { MODKEY,                       XK_r,      spawn,          {.v = rtorrentcmd} },
-  { MODKEY,                       XK_i,      spawn,          {.v = irssicmd} },
-  { MODKEY,                       XK_m,      spawn,          {.v = muttcmd} },
+  { MODKEY,                       XK_a,      runorraise,     {.v = pcmancmd} },
+  { MODKEY,                       XK_r,      runorraise,     {.v = rtorrentcmd} },
+  { MODKEY,                       XK_i,      runorraise,     {.v = irssicmd} },
+  { MODKEY,                       XK_m,      runorraise,     {.v = muttcmd} },
   { MODKEY|ShiftMask,             XK_b,      togglebar,      {0} },
   { MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
   { MODKEY,                       XK_k,      focusstack,     {.i = -1 } },

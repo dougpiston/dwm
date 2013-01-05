@@ -15,6 +15,7 @@ depends=('libx11' 'libxinerama')
 install=dwm.install
 source=(http://dl.suckless.org/dwm/dwm-$pkgver.tar.gz
 	config.h
+  runorraise.c
 	dwm.desktop)
 md5sums=('8bb00d4142259beb11e13473b81c0857'
          '2453e037f46449774ec8afab49b4f1a2'
@@ -23,6 +24,7 @@ md5sums=('8bb00d4142259beb11e13473b81c0857'
 build() {
   cd $srcdir/$pkgname-$pkgver
   cp $srcdir/config.h config.h
+  cp $srcdir/runorraise.c runorraise.c
   sed -i 's/CPPFLAGS =/CPPFLAGS +=/g' config.mk
   sed -i 's/^CFLAGS = -g/#CFLAGS += -g/g' config.mk
   sed -i 's/^#CFLAGS = -std/CFLAGS += -std/g' config.mk
