@@ -3,10 +3,10 @@
 #include "runorraise.c"
 #include "bstackhoriz.c"
 #include "bstack.c"
+#define NUMCOLORS 13
 
 /* appearance */
 static const char font[] = "-*-ohsnap.icons-medium-*-normal--12-87-100-100-c-70-iso8859-1";
-#define NUMCOLORS 13
 static const char colors[NUMCOLORS][ColLast][9] = {
   // border foreground background
   { "#5f636d", "#5f636d", "#1d1f21" }, // 1 = normal (grey on black)
@@ -29,7 +29,7 @@ static const Bool showbar = True; /* False means no bar */
 static const Bool topbar = True; /* False means bottom bar */
 
 /* tagging */
-static const char *tags[] = { "Irssi", "iNet", "File", "eMail", "rTor"};
+static const char *tags[] = { "chat", "web", "file", "mail", "misc", "skype"};
 
 static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
@@ -39,6 +39,7 @@ static const Rule rules[] = {
   { "Pcmanfm",  NULL,       NULL,       1 << 2,       False,       -1 },
   { NULL,       NULL,       "mutt",     1 << 3,       False,       -1 },
   { NULL,       NULL,       "irssi",    1 << 0,       False,       -1 },
+  { "Skype",    NULL,       NULL,       1 << 5,       False,       -1 },
 };
 
 /* layout(s) */
@@ -70,11 +71,12 @@ static const Layout layouts[] = {
 static const char *dmenucmd[]      = { "dmenu_run", "-fn", font, "-nb", colors[0][ColBG], "-nf", colors[0][ColFG], "-sb", colors[1][ColBG], "-sf", colors[1][ColFG], NULL };
 static const char *termcmd[]       = { "urxvt", NULL };
 static const char *pcmancmd[]      = { "pcmanfm", NULL, "Pcmanfm" };
+static const char *skypecmd[]      = { "skype", NULL, "Skype" };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "urxvt", "-name", scratchpadname, "-geometry", "100x25", NULL };
 static const char *rtorrentcmd[]   = { "urxvt", "-title", "rtorrent", "-e", "rtorrent", NULL };
-static const char *muttcmd[]       = { "urxvt", "-title", "mutt", "-e", "mutt", NULL, "Mutt" };
-static const char *irssicmd[]      = { "urxvt", "-title", "irssi", "-e", "irssi", NULL };
+static const char muttname[]       = "mutt";
+static const char *muttcmd[]       = { "urxvt", "-name", muttname,"-title", "mutt", "-e", "mutt", NULL };
 static const char *volupcmd[]      = { "amixer", "-q", "set", "Master", "5%+", NULL };
 static const char *voldncmd[]      = { "amixer", "-q", "set", "Master", "5%-", NULL };
 static const char *mpdstop[]       = { "ncmpcpp", "stop", NULL };
@@ -97,9 +99,9 @@ static Key keys[] = {
   { MODKEY,                       XK_x,      runorraise,     {.v = firefox } },
   { MODKEY,                       XK_z,      togglescratch,  {.v = scratchpadcmd} },
   { MODKEY,                       XK_a,      runorraise,     {.v = pcmancmd} },
-  { MODKEY,                       XK_r,      runorraise,     {.v = rtorrentcmd} },
-  { MODKEY,                       XK_i,      runorraise,     {.v = irssicmd} },
-  { MODKEY,                       XK_m,      runorraise,     {.v = muttcmd} },
+  { MODKEY,                       XK_r,      spawn,          {.v = rtorrentcmd} },
+  { MODKEY,                       XK_m,      spawn,          {.v = muttcmd} },
+  { MODKEY,                       XK_k,      runorraise,     {.v = skypecmd} },
   { MODKEY|ShiftMask,             XK_b,      togglebar,      {0} },
   { MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
   { MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
