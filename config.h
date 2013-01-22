@@ -101,7 +101,7 @@ static Key keys[] = {
   { MODKEY,                       XK_a,      runorraise,     {.v = pcmancmd} },
   { MODKEY,                       XK_r,      spawn,          {.v = rtorrentcmd} },
   { MODKEY,                       XK_m,      spawn,          {.v = muttcmd} },
-  { MODKEY,                       XK_k,      runorraise,     {.v = skypecmd} },
+  { MODKEY,                       XK_y,      runorraise,     {.v = skypecmd} },
   { MODKEY|ShiftMask,             XK_b,      togglebar,      {0} },
   { MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
   { MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
