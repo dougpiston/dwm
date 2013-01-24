@@ -69,14 +69,14 @@ static const Layout layouts[] = {
 
 /* commands */
 static const char *dmenucmd[]      = { "dmenu_run", "-fn", font, "-nb", colors[0][ColBG], "-nf", colors[0][ColFG], "-sb", colors[1][ColBG], "-sf", colors[1][ColFG], NULL };
-static const char *termcmd[]       = { "urxvt", NULL };
+static const char *termcmd[]       = { "urxvtc", NULL };
 static const char *pcmancmd[]      = { "pcmanfm", NULL, "Pcmanfm" };
 static const char *skypecmd[]      = { "skype", NULL, "Skype" };
 static const char scratchpadname[] = "scratchpad";
-static const char *scratchpadcmd[] = { "urxvt", "-name", scratchpadname, "-geometry", "100x25", NULL };
-static const char *rtorrentcmd[]   = { "urxvt", "-title", "rtorrent", "-e", "rtorrent", NULL };
+static const char *scratchpadcmd[] = { "urxvtc", "-name", scratchpadname, "-geometry", "100x25", NULL };
+static const char *rtorrentcmd[]   = { "urxvtc", "-title", "rtorrent", "-e", "rtorrent", NULL };
 static const char muttname[]       = "mutt";
-static const char *muttcmd[]       = { "urxvt", "-name", muttname,"-title", "mutt", "-e", "mutt", NULL };
+static const char *muttcmd[]       = { "urxvtc", "-name", muttname,"-title", "mutt", "-e", "mutt", NULL };
 static const char *volupcmd[]      = { "amixer", "-q", "set", "Master", "5%+", NULL };
 static const char *voldncmd[]      = { "amixer", "-q", "set", "Master", "5%-", NULL };
 static const char *mpdstop[]       = { "ncmpcpp", "stop", NULL };
