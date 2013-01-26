@@ -79,6 +79,7 @@ static const char muttname[]       = "mutt";
 static const char *muttcmd[]       = { "urxvtc", "-name", muttname,"-title", "mutt", "-e", "mutt", NULL };
 static const char *volupcmd[]      = { "amixer", "-q", "set", "Master", "5%+", NULL };
 static const char *voldncmd[]      = { "amixer", "-q", "set", "Master", "5%-", NULL };
+static const char *mpdplay[]       = { "ncmpcpp", "play", NULL };
 static const char *mpdstop[]       = { "ncmpcpp", "stop", NULL };
 static const char *mpdprev[]       = { "ncmpcpp", "prev", NULL };
 static const char *mpdnext[]       = { "ncmpcpp", "next", NULL };
@@ -91,6 +92,7 @@ static Key keys[] = {
   { 0,                          0x1008ff11,  spawn,          {.v = voldncmd } },
   { 0,                          0x1008ff02,  spawn,          SHCMD("xbacklight -inc 25") },
   { 0,                          0x1008ff03,  spawn,          SHCMD("xbacklight -dec 15") },
+  { MODKEY,                       XK_q,      spawn,          {.v = mpdplay } },
   { MODKEY,                       XK_s,      spawn,          {.v = mpdstop } },
   { MODKEY,                       XK_p,      spawn,          {.v = mpdprev } },
   { MODKEY,                       XK_n,      spawn,          {.v = mpdnext } },
