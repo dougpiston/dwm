@@ -34,7 +34,7 @@ static const char *tags[] = { "chat", "web", "file", "mail", "misc", "skype"};
 static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            True,        -1 },
-	{ "Dwb",      NULL,       NULL,       1 << 1,       False,       -1 },
+	{ "Firefox",  NULL,       NULL,       1 << 1,       False,       -1 },
   { NULL,       NULL,       "rtorrent", 1 << 4,       False,       -1 },
   { "Pcmanfm",  NULL,       NULL,       1 << 2,       False,       -1 },
   { NULL,       NULL,       "mutt",     1 << 3,       False,       -1 },
@@ -83,7 +83,7 @@ static const char *mpdplay[]       = { "ncmpcpp", "play", NULL };
 static const char *mpdstop[]       = { "ncmpcpp", "stop", NULL };
 static const char *mpdprev[]       = { "ncmpcpp", "prev", NULL };
 static const char *mpdnext[]       = { "ncmpcpp", "next", NULL };
-static const char *dwb[]           = { "dwb", NULL, "Dwb" };
+static const char *firefox[]       = { "firefox", NULL, "Firefox" };
 
 
 static Key keys[] = {
@@ -98,7 +98,7 @@ static Key keys[] = {
   { MODKEY,                       XK_n,      spawn,          {.v = mpdnext } },
   { MODKEY,                       XK_v,      spawn,          {.v = dmenucmd } },
   { MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-  { MODKEY,                       XK_x,      runorraise,     {.v = dwb } },
+  { MODKEY,                       XK_x,      runorraise,     {.v = firefox } },
   { MODKEY,                       XK_z,      togglescratch,  {.v = scratchpadcmd} },
   { MODKEY,                       XK_a,      runorraise,     {.v = pcmancmd} },
   { MODKEY,                       XK_r,      spawn,          {.v = rtorrentcmd} },
