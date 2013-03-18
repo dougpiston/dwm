@@ -29,7 +29,7 @@ static const Bool showbar = True; /* False means no bar */
 static const Bool topbar = True; /* False means bottom bar */
 
 /* tagging */
-static const char *tags[] = { "chat", "web", "file", "mail", "misc", "skype"};
+static const char *tags[] = { "chat", "web", "file", "mail", "torz", "seckz"};
 
 static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
@@ -37,6 +37,7 @@ static const Rule rules[] = {
 	{ "Firefox",  NULL,       NULL,       1 << 1,       False,       -1 },
   { NULL,       NULL,       "rtorrent", 1 << 4,       False,       -1 },
   { "Pcmanfm",  NULL,       NULL,       1 << 2,       False,       -1 },
+  { "Evince",   NULL,       NULL,       1 << 2,       False,       -1 },
   { NULL,       NULL,       "mutt",     1 << 3,       False,       -1 },
   { NULL,       NULL,       "irssi",    1 << 0,       False,       -1 },
   { "Skype",    NULL,       NULL,       1 << 5,       False,       -1 },
